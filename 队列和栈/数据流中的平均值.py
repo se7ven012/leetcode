@@ -41,7 +41,7 @@ class MovingAverage:
     #求和没有顺序要求所以直接用一个指针
     def next(self, val: int) -> float:
         self.nums[self.pointerr]=val
-        self.pointerr = (self.pointerr+1)%self.size
+        self.pointerr = (self.pointerr+1) % self.size
         if self.count < self.size:
             self.count += 1
         return sum(self.nums)/self.count
