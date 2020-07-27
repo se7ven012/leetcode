@@ -11,7 +11,8 @@
 # Your MovingAverage object will be instantiated and called as such:
 # obj = MovingAverage(size)
 # param_1 = obj.next(val)
- 
+
+
 class MovingAverage:
     # 跑的慢
     # def __init__(self, size: int):
@@ -27,23 +28,21 @@ class MovingAverage:
     #     self.currSum = sum(self.nums[-self.size:])
     #     # 直接从两数取最小这样不用写if else
     #     return self.currSum/min(self.size, len(self.nums))
-    
 
     def __init__(self, size: int):
         """
         Initialize your data structure here.
         """
         self.size = size
-        self.nums = [0]*size
+        self.nums = [0] * size
         self.pointerr = 0
         self.count = 0
 
-    #求和没有顺序要求所以直接用一个指针
+    # 求和没有顺序要求所以直接用一个指针
     def next(self, val: int) -> float:
-        self.nums[self.pointerr]=val
-        self.pointerr = (self.pointerr+1) % self.size
+        self.nums[self.pointerr] = val
+        self.pointerr = (self.pointerr + 1) % self.size
         if self.count < self.size:
             self.count += 1
-        return sum(self.nums)/self.count
-
+        return sum(self.nums) / self.count
 

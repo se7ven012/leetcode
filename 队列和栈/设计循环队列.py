@@ -21,18 +21,17 @@
 # param_5 = obj.isEmpty()
 # param_6 = obj.isFull()
 
+
 class MyCircularQueue(object):
-    
     def __init__(self, k):
         """
         Initialize your data structure here. Set the size of the queue to be k.
         :type k: int
         """
-        self.queue = [0]*k
+        self.queue = [0] * k
         self.capacity = k
         self.cout = 0
         self.headIndex = 0
-        
 
     def enQueue(self, value):
         """
@@ -42,20 +41,19 @@ class MyCircularQueue(object):
         """
         if self.cout == self.capacity:
             return False
-        self.queue[(self.cout+self.headIndex) % self.capacity] = value
-        self.cout+=1
+        self.queue[(self.cout + self.headIndex) % self.capacity] = value
+        self.cout += 1
         return True
-        
 
     def deQueue(self):
         """
         Delete an element from the circular queue. Return true if the operation is successful.
         :rtype: bool
         """
-        if self.cout ==0:
+        if self.cout == 0:
             return False
         self.headIndex = (self.headIndex + 1) % self.capacity
-        self.cout -=1
+        self.cout -= 1
         return True
 
     def Front(self):
@@ -63,7 +61,7 @@ class MyCircularQueue(object):
         Get the front item from the queue.
         :rtype: int
         """
-        if self.cout ==0:
+        if self.cout == 0:
             return -1
         return self.queue[self.headIndex]
 
@@ -72,10 +70,10 @@ class MyCircularQueue(object):
         Get the last item from the queue.
         :rtype: int
         """
-        if self.cout ==0:
+        if self.cout == 0:
             return -1
         # headIndex自己也算一个count，所以这里要 -1
-        return self.queue[(self.cout + self.headIndex -1) % self.capacity]
+        return self.queue[(self.cout + self.headIndex - 1) % self.capacity]
 
     def isEmpty(self):
         """
@@ -90,5 +88,4 @@ class MyCircularQueue(object):
         :rtype: bool
         """
         return self.cout == self.capacity
-
 
