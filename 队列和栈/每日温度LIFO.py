@@ -24,10 +24,3 @@ class Solution:
             # 就直接把当前索引压入栈
             stack.append(i)
         return anw
-
-
-
-#%%
-stack=[]
-while stack:
-    print("i")
