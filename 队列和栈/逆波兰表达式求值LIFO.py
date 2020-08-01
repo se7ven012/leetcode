@@ -51,3 +51,17 @@
 #     去掉括号后表达式无歧义，上式即便写成 1 2 + 3 4 + * 也可以依据次序计算出正确结果。
 #     适合用栈操作运算：遇到数字则入栈；遇到算符则取出栈顶两个数字进行计算，并将结果压入栈中。
 
+# 单调栈实现
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        stack=[]
+        for i in tokens:
+            if i in "+-*/":
+                tem = stack.pop()
+                tem2 = stack.pop()
+                # 注意
+                # 因为逆波兰表达式的特点 这里是tem2在先 tem在后
+                stack.append(str(int(eval(tem2+i+tem))))
+            else:
+                stack.append(i)
+        return int(stack[0])
