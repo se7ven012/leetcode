@@ -21,26 +21,30 @@
 #         self.right = None
 
 # 二叉树遍历可以用栈迭代实现
-# 这里我们把树的结构用两种颜色表示 （灰，白） 
-# 这样写出来不会烧脑 
+# 这里我们把树的结构用两种颜色表示 （灰，白）
+# 这样写出来不会烧脑
 # 1.新节点是白色，已访问节点为灰色
 # 2.遇到白色节点将其标灰，并将其右子节 自身 左子节入栈
+# 因为栈是先入后出，出栈左中右的话，入栈就要右中左
+# 同理如果前序则 入栈右左中， 后序则入栈中右左
 # 3.遇到的节点为灰色则将该结点的值输出
 
 # 这个方法同样能用在二叉树前序，后序遍历上
 # 只要改一下左右子节点入栈顺序即可
 class Solution:
     def inorderTraversal(self, root: TreeNode) -> List[int]:
-        white, gray = 0,1
+        white, gray = 0, 1
         res = []
-        stack = [(white,root)]
+        stack = [(white, root)]
         while stack:
-            color,node = stack.pop()
-            if not node: continue
+            # 调出栈内最后一个
+            color, node = stack.pop()
+            if not node:
+                continue
             if color == white:
-                stack.append((white,node.right))
-                stack.append((gray,node))
-                stack.append((white,node.left))
+                stack.append((white, node.right))
+                stack.append((gray, node))
+                stack.append((white, node.left))
             else:
                 res.append(node.val)
         return res
