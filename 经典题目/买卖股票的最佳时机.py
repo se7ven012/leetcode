@@ -21,6 +21,6 @@ class Solution:
         minprice = inf
         maxprofit = 0
         for price in prices:
-            maxprofit = max(price-minprice, maxprofit)
+            maxprofit = max(price - minprice, maxprofit)
             minprice = min(price, minprice)
         return maxprofit
